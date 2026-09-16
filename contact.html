@@ -1,0 +1,730 @@
+
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>متجر أكرم الإلكتروني</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Tahoma, sans-serif;
+        }
+
+        body {
+            background: #121212;
+            color: white;
+            line-height: 1.6;
+        }
+
+        .app-container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 25px;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            margin: auto;
+            border-radius: 50%;
+            background: linear-gradient(45deg, orange, orangered);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 40px;
+        }
+
+        h1 {
+            color: orange;
+            margin-top: 10px;
+        }
+
+        nav {
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            background: #252525;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        nav button {
+            border: none;
+            background: transparent;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        nav button:hover {
+            background: orange;
+            color: black;
+        }
+
+        section {
+            padding: 50px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            color: orange;
+            margin-bottom: 25px;
+            font-size: 28px;
+        }
+
+        .hero {
+            text-align: center;
+            background: linear-gradient(135deg, #222, #333);
+            padding: 60px 20px;
+            border-radius: 15px;
+        }
+
+        .hero h2 {
+            color: orange;
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background: orange;
+            color: black;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: orangered;
+            color: white;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 20px;
+        }
+
+        .product {
+            background: #222;
+            border: 1px solid #333;
+            border-radius: 12px;
+            overflow: hidden;
+            text-align: center;
+            padding-bottom: 20px;
+        }
+
+        .product-image {
+            height: 180px;
+            background: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 70px;
+        }
+
+        .product h3 {
+            margin: 15px 0 5px;
+        }
+
+        .price {
+            color: orange;
+            font-size: 20px;
+            font-weight: bold;
+            margin: 10px;
+        }
+
+        .offer {
+            border: 1px solid #ff4500;
+            background: #241515;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .old-price {
+            color: #888;
+            text-decoration: line-through;
+            margin-left: 10px;
+        }
+
+        .new-price {
+            color: red;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .about {
+            max-width: 700px;
+            margin: auto;
+            background: #222;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .contact {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .contact-box {
+            background: #222;
+            padding: 25px;
+            border-radius: 12px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            background: #333;
+            color: white;
+            border: 1px solid #555;
+            border-radius: 6px;
+        }
+
+        textarea {
+            height: 120px;
+            resize: none;
+        }
+
+        .cart {
+            position: fixed;
+            left: 20px;
+            bottom: 20px;
+            background: orange;
+            color: black;
+            padding: 15px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            z-index: 200;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #888;
+        }
+
+        @media (max-width: 700px) {
+            .contact {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                gap: 5px;
+            }
+
+            nav button {
+                padding: 8px 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="app-container">
+
+        <!-- رأس الموقع -->
+        <header>
+            <div class="logo">🛒</div>
+            <h1>متجر أكرم الإلكتروني</h1>
+            <p>أفضل الأجهزة والمنتجات الإلكترونية</p>
+        </header>
+
+
+        <!-- قائمة التنقل -->
+        <nav>
+
+            <button onclick="scrollToSection('home')">
+                الرئيسية
+            </button>
+
+            <button onclick="scrollToSection('products')">
+                المنتجات
+            </button>
+
+            <button onclick="scrollToSection('offers')">
+                العروض
+            </button>
+
+            <button onclick="scrollToSection('about')">
+                من نحن
+            </button>
+
+            <button onclick="scrollToSection('contact')">
+                تواصل معنا
+            </button>
+
+        </nav>
+
+
+        <!-- الرئيسية -->
+        <section id="home">
+
+            <div class="hero">
+
+                <h2>💻 أجهزة إلكترونية</h2>
+
+                <p>
+                    اكتشف أفضل اللابتوبات والهواتف والسماعات
+                    والإكسسوارات الإلكترونية.
+                </p>
+
+                <button class="btn"
+                    onclick="scrollToSection('products')">
+
+                    تسوق الآن
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- المنتجات -->
+        <section id="products">
+
+            <h2 class="section-title">
+                🛍️ منتجاتنا
+            </h2>
+
+            <div class="products">
+
+
+                <!-- المنتج الأول -->
+                <div class="product">
+
+                    <div class="product-image">
+                        📱
+                    </div>
+
+                    <h3>هاتف ذكي</h3>
+
+                    <p>
+                        هاتف حديث بمواصفات قوية
+                    </p>
+
+                    <div class="price">
+                        300$
+                    </div>
+
+                    <button class="btn"
+                        onclick="addToCart('هاتف ذكي', 300)">
+
+                        أضف للسلة
+
+                    </button>
+
+                </div>
+
+
+                <!-- المنتج الثاني -->
+                <div class="product">
+
+                    <div class="product-image">
+                        💻
+                    </div>
+
+                    <h3>لابتوب</h3>
+
+                    <p>
+                        لابتوب مناسب للعمل والدراسة
+                    </p>
+
+                    <div class="price">
+                        700$
+                    </div>
+
+                    <button class="btn"
+                        onclick="addToCart('لابتوب', 700)">
+
+                        أضف للسلة
+
+                    </button>
+
+                </div>
+
+
+                <!-- المنتج الثالث -->
+                <div class="product">
+
+                    <div class="product-image">
+                        🎧
+                    </div>
+
+                    <h3>سماعة</h3>
+
+                    <p>
+                        سماعة لاسلكية بجودة عالية
+                    </p>
+
+                    <div class="price">
+                        80$
+                    </div>
+
+                    <button class="btn"
+                        onclick="addToCart('سماعة', 80)">
+
+                        أضف للسلة
+
+                    </button>
+
+                </div>
+
+
+                <!-- المنتج الرابع -->
+                <div class="product">
+
+                    <div class="product-image">
+                        ⌚
+                    </div>
+
+                    <h3>ساعة ذكية</h3>
+
+                    <p>
+                        ساعة ذكية متعددة الوظائف
+                    </p>
+
+                    <div class="price">
+                        120$
+                    </div>
+
+                    <button class="btn"
+                        onclick="addToCart('ساعة ذكية', 120)">
+
+                        أضف للسلة
+
+                    </button>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- العروض -->
+        <section id="offers">
+
+            <h2 class="section-title">
+                🔥 العروض الخاصة
+            </h2>
+
+            <div class="offer">
+
+                <h3>
+                    عرض اللابتوب
+                </h3>
+
+                <p>
+                    خصم خاص لفترة محدودة
+                </p>
+
+                <p>
+
+                    <span class="old-price">
+                        900$
+                    </span>
+
+                    <span class="new-price">
+                        700$
+                    </span>
+
+                </p>
+
+                <br>
+
+                <button class="btn"
+                    onclick="addToCart('لابتوب العرض', 700)">
+
+                    شراء العرض
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- من نحن -->
+        <section id="about">
+
+            <h2 class="section-title">
+                👨‍💻 من نحن
+            </h2>
+
+            <div class="about">
+
+                <h3>
+                    متجر أكرم الإلكتروني
+                </h3>
+
+                <p>
+                    متجر إلكتروني متخصص في بيع الأجهزة
+                    والمنتجات الإلكترونية.
+                </p>
+
+                <p>
+                    هدفنا تقديم منتجات جيدة
+                    وخدمة مميزة للعملاء.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- التواصل -->
+        <section id="contact">
+
+            <h2 class="section-title">
+                📞 تواصل معنا
+            </h2>
+
+            <div class="contact">
+
+
+                <div class="contact-box">
+
+                    <h3>
+                        أرسل لنا رسالة
+                    </h3>
+
+                    <br>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="اسمك">
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="البريد الإلكتروني">
+
+                    <textarea
+                        id="message"
+                        placeholder="اكتب رسالتك">
+                    </textarea>
+
+                    <button class="btn"
+                        onclick="sendMessage()">
+
+                        إرسال
+
+                    </button>
+
+                </div>
+
+
+                <div class="contact-box">
+
+                    <h3>
+                        معلومات التواصل
+                    </h3>
+
+                    <br>
+
+                    <p>
+                        📞 الهاتف: 779570482
+                    </p>
+
+                    <p>
+                        📧 البريد: akram@example.com
+                    </p>
+
+                    <p>
+                        📍 العنوان: اليمن
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <footer>
+
+            متجر أكرم الإلكتروني © 2026
+
+        </footer>
+
+    </div>
+
+
+    <!-- زر السلة -->
+
+    <div class="cart"
+        onclick="showCart()">
+
+        🛒 السلة:
+        <span id="cartCount">0</span>
+
+    </div>
+
+
+    <!-- JavaScript -->
+
+    <script>
+
+        // عدد المنتجات الموجودة في السلة
+
+        let cartCount = 0;
+
+        let cartItems = [];
+
+
+        // الانتقال إلى القسم
+
+        function scrollToSection(sectionId) {
+
+            document
+                .getElementById(sectionId)
+                .scrollIntoView({
+                    behavior: "smooth"
+                });
+
+        }
+
+
+        // إضافة منتج إلى السلة
+
+        function addToCart(productName, price) {
+
+            cartCount++;
+
+            cartItems.push({
+                name: productName,
+                price: price
+            });
+
+            document.getElementById("cartCount").textContent =
+                cartCount;
+
+            alert(
+                "تمت إضافة " +
+                productName +
+                " إلى السلة ✅"
+            );
+
+        }
+
+
+        // عرض السلة
+
+        function showCart() {
+
+            if (cartItems.length === 0) {
+
+                alert("السلة فارغة 🛒");
+
+                return;
+            }
+
+
+            let message = "محتويات السلة:\n\n";
+
+            let total = 0;
+
+
+            cartItems.forEach(function(item) {
+
+                message +=
+                    item.name +
+                    " - " +
+                    item.price +
+                    "$\n";
+
+                total += item.price;
+
+            });
+
+
+            message +=
+                "\nالمجموع: " +
+                total +
+                "$";
+
+
+            alert(message);
+
+        }
+
+
+        // إرسال الرسالة
+
+        function sendMessage() {
+
+            let name =
+                document.getElementById("name").value;
+
+            let email =
+                document.getElementById("email").value;
+
+            let message =
+                document.getElementById("message").value;
+
+
+            if (
+                name === "" ||
+                email === "" ||
+                message === ""
+            ) {
+
+                alert("من فضلك املأ جميع الحقول ❌");
+
+                return;
+
+            }
+
+
+            alert(
+                "تم إرسال رسالتك بنجاح ✅\n" +
+                "شكرًا لك " +
+                name
+            );
+
+
+            document.getElementById("name").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("message").value = "";
+
+        }
+
+    </script>
+
+</body>
+
+</html>
